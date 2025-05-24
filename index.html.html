@@ -1,1522 +1,1603 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RK Builds Mart - Powering Progress with Quality Building Materials</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    /* --- Base & Typography --- */
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(to bottom right, #e0eafc, #cfdef3); /* Softer gradient */
-      color: #333;
-      line-height: 1.6;
-      scroll-behavior: smooth;
-    }
-    h1, h2, h3, h4 {
-      font-family: 'Roboto', sans-serif;
-      color: #002B4B; /* Deep Navy Blue */
-      margin-bottom: 0.8em;
-    }
-    h1 { font-size: 3rem; margin-bottom: 0.5em; }
-    h2 { font-size: 2.2rem; margin-bottom: 1em; text-align: center; position: relative; padding-bottom: 15px; }
-    h2::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 3px;
-      background-color: #003F6B; /* Accent line */
-      border-radius: 5px;
-    }
-    h3 { font-size: 1.6rem; margin-bottom: 0.6em; }
-    h4 { font-size: 1.3rem; margin-bottom: 0.5em; }
-    p { margin-bottom: 1em; }
-    a {
-      color: #003F6B;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    a:hover {
-      color: #005F99;
-      text-decoration: underline;
-    }
-    strong { font-weight: 600; }
-    section {
-      padding: 4rem 2rem;
-      max-width: 1200px;
-      margin: auto;
-      opacity: 0; /* For scroll animation */
-      transform: translateY(20px); /* For scroll animation */
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    }
-    section.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RK Builds Mart - Your One-Stop Solution for Building Materials</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #003F6B; /* Dark Blue */
+            --secondary-color: #00A6FB; /* Light Blue */
+            --accent-color: #FF7F11; /* Orange */
+            --text-dark: #333;
+            --text-light: #f4f4f4;
+            --bg-light: #f9f9f9;
+            --bg-dark: #002D50; /* Even darker blue */
+            --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Roboto', sans-serif;
+        }
 
-    /* --- Header & Navigation --- */
-    header {
-      background: #002B4B; /* Deep Navy Blue */
-      color: #fff;
-      padding: 1rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between; /* Space out logo and nav */
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    .logo-container {
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-    }
-    .logo {
-      height: 60px; /* Adjust logo size */
-      width: auto;
-      border-radius: 8px;
-      margin-right: 15px;
-    }
-    .header-branding h1 {
-      font-size: 2.2rem;
-      margin: 0;
-      color: #fff;
-      line-height: 1;
-    }
-    .header-branding p {
-      font-size: 0.9rem;
-      margin: 0;
-      color: rgba(255, 255, 255, 0.8);
-    }
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-    }
-    nav ul li {
-      margin-left: 25px;
-    }
-    nav ul li a {
-      color: #fff;
-      font-weight: 600;
-      font-size: 1.1rem;
-      transition: color 0.3s ease;
-      position: relative;
-      padding-bottom: 5px;
-    }
-    nav ul li a::after {
-      content: '';
-      position: absolute;
-      width: 0%;
-      height: 2px;
-      bottom: 0;
-      left: 0;
-      background-color: #00A6FB; /* Light Blue Accent */
-      transition: width 0.3s ease-in-out;
-    }
-    nav ul li a:hover::after {
-      width: 100%;
-    }
-    nav ul li a:hover {
-      color: #00A6FB;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    /* Hamburger Menu for Mobile */
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      padding: 10px;
-      background: none;
-      border: none;
-      outline: none;
-    }
-    .menu-toggle .bar {
-      width: 25px;
-      height: 3px;
-      background-color: #fff;
-      margin: 4px 0;
-      transition: 0.4s;
-    }
+        body {
+            font-family: var(--font-body);
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            scroll-behavior: smooth;
+        }
 
-    /* --- Hero Section --- */
-    .hero {
-      background: url('https://i.ibb.co/SDptybTp/SDptybTp.png') no-repeat center center/cover; /* Updated Hero Background */
-      color: #fff;
-      text-align: center;
-      padding: 10rem 2rem;
-      position: relative;
-      overflow: hidden; /* For particles/overlay */
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 43, 75, 0.7); /* Dark overlay */
-      z-index: 1;
-    }
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .hero h1 {
-      font-size: 3.8rem;
-      margin-bottom: 20px;
-      color: #fff;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-    }
-    .hero p {
-      font-size: 1.3rem;
-      margin-bottom: 30px;
-      color: rgba(255, 255, 255, 0.9);
-    }
-    .hero .btn {
-      display: inline-block;
-      background-color: #00A6FB; /* Light Blue Accent */
-      color: #fff;
-      padding: 15px 30px;
-      border-radius: 8px;
-      font-size: 1.1rem;
-      font-weight: 700;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-    .hero .btn:hover {
-      background-color: #008CC7;
-      transform: translateY(-3px);
-      text-decoration: none;
-    }
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
 
-    /* --- About Us (Mission, Vision, Values) --- */
-    .about-details {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      margin-top: 2rem;
-    }
-    .about-details div {
-      background-color: #fff;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      text-align: center;
-      transition: transform 0.3s ease;
-    }
-    .about-details div:hover {
-      transform: translateY(-10px);
-    }
-    .about-details div i {
-      font-size: 3rem;
-      color: #003F6B;
-      margin-bottom: 15px;
-    }
-    .about-details div h3 {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-      color: #002B4B;
-    }
-    .about-details div p {
-      font-size: 0.95rem;
-      color: #555;
-    }
+        a:hover {
+            color: var(--primary-color);
+        }
 
-    /* --- Why Choose Us --- */
-    #why-choose-us ul {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      padding: 0;
-      list-style: none;
-      margin-top: 2rem;
-    }
-    #why-choose-us ul li {
-      background-color: #fff;
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      margin-bottom: 0; /* Resetting default li margin */
-    }
-    #why-choose-us ul li:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    }
-    #why-choose-us ul li strong {
-      display: block; /* Make bold text take full width */
-      margin-bottom: 8px; /* Space between bold text and description */
-      font-size: 1.15rem;
-      color: #002B4B;
-    }
-    #why-choose-us ul li span { /* For the emojis */
-      margin-right: 10px;
-      font-size: 1.2em;
-    }
-    #why-choose-us ul li p {
-      font-size: 0.95rem;
-      color: #666;
-    }
+        /* --- Header --- */
+        header {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
 
-    /* --- Products & Services (Tabbed Interface) --- */
-    .product-tabs {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 30px;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .product-tabs button {
-      background-color: #003F6B;
-      color: #fff;
-      border: none;
-      padding: 12px 25px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-      font-weight: 600;
-    }
-    .product-tabs button:hover {
-      background-color: #005F99;
-      transform: translateY(-2px);
-    }
-    .product-tabs button.active {
-      background-color: #00A6FB; /* Active tab color */
-      box-shadow: 0 4px 10px rgba(0,166,251,0.4);
-    }
-    .tab-content {
-      display: none;
-    }
-    .tab-content.active {
-      display: block;
-    }
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 25px;
-      margin-top: 20px;
-    }
-    .product-item {
-      background: #ffffff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .product-item:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    }
-    .product-item img {
-      width: 80px; /* Adjust size */
-      height: 80px;
-      margin-bottom: 15px;
-      object-fit: contain;
-    }
-    .product-item h3 {
-      font-size: 1.2rem;
-      margin: 0;
-      color: #002B4B;
-    }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
 
-    /* --- Certifications & Quality --- */
-    .certification-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      margin-top: 2rem;
-      text-align: center;
-    }
-    .certification-item {
-      background-color: #fff;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.07);
-      transition: transform 0.3s ease;
-    }
-    .certification-item:hover {
-      transform: scale(1.03);
-    }
-    .certification-item .icon-placeholder {
-      font-size: 3rem;
-      color: #003F6B;
-      margin-bottom: 15px;
-      display: block; /* Ensure it takes its own line */
-    }
-    .certification-item h3 {
-      font-size: 1.4rem;
-      color: #002B4B;
-      margin-bottom: 10px;
-    }
-    .certification-item p {
-      font-size: 0.9rem;
-      color: #666;
-    }
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+        }
 
-    /* --- CSR / Sustainability --- */
-    .csr-content {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
-      align-items: center;
-      margin-top: 2rem;
-    }
-    .csr-content .csr-text {
-      flex: 2;
-      min-width: 300px;
-    }
-    .csr-content .csr-image {
-      flex: 1;
-      min-width: 250px;
-      text-align: center;
-    }
-    .csr-content img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-    }
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
 
-    /* --- News & Updates --- */
-    .news-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      margin-top: 2rem;
-    }
-    .news-item {
-      background-color: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.07);
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .news-item:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    }
-    .news-item img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      display: block;
-    }
-    .news-item-content {
-      padding: 20px;
-    }
-    .news-item-content h3 {
-      font-size: 1.3rem;
-      margin-top: 0;
-      margin-bottom: 10px;
-      color: #002B4B;
-    }
-    .news-item-content p {
-      font-size: 0.9rem;
-      color: #666;
-      line-height: 1.5;
-    }
-    .news-item-content .read-more {
-      display: inline-block;
-      margin-top: 15px;
-      color: #00A6FB;
-      font-weight: 600;
-    }
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+        }
 
-    /* --- Testimonials Carousel --- */
-    .testimonials-container {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-      margin: 2rem auto;
-      padding: 20px;
-      background-color: #e0eafc; /* Light background for carousel */
-      border-radius: 15px;
-      box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
-    }
-    .testimonials-carousel {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-    }
-    .testimonial-slide {
-      min-width: 100%; /* Each slide takes full width */
-      box-sizing: border-box;
-      background-color: #fff;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-    .testimonial-slide img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 15px;
-      border: 3px solid #00A6FB;
-    }
-    .testimonial-slide p {
-      font-style: italic;
-      color: #555;
-      margin-bottom: 15px;
-      font-size: 1rem;
-    }
-    .testimonial-slide h4 {
-      margin: 0;
-      color: #002B4B;
-      font-size: 1.1rem;
-    }
-    .testimonial-slide span {
-      display: block;
-      font-size: 0.9rem;
-      color: #777;
-    }
-    .carousel-nav-dots {
-      text-align: center;
-      margin-top: 20px;
-    }
-    .dot {
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      background-color: #ccc;
-      border-radius: 50%;
-      margin: 0 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    .dot.active {
-      background-color: #00A6FB;
-    }
+        .main-nav ul li {
+            margin-left: 2rem;
+        }
 
-    /* --- Careers --- */
-    .career-job {
-      background-color: #fff;
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.07);
-      margin-bottom: 20px;
-      transition: transform 0.3s ease;
-    }
-    .career-job:hover {
-      transform: translateX(10px);
-    }
-    .career-job h3 {
-      margin-top: 0;
-      color: #002B4B;
-    }
-    .career-job p {
-      font-size: 0.95rem;
-      color: #666;
-    }
-    .career-job ul {
-      list-style: disc;
-      padding-left: 20px;
-      font-size: 0.9rem;
-      color: #555;
-    }
-    .career-job .apply-btn {
-      display: inline-block;
-      background-color: #00A6FB;
-      color: #fff;
-      padding: 10px 20px;
-      border-radius: 5px;
-      margin-top: 15px;
-      font-size: 0.9rem;
-      transition: background-color 0.3s ease;
-    }
-    .career-job .apply-btn:hover {
-      background-color: #008CC7;
-      text-decoration: none;
-    }
+        .main-nav ul li a {
+            color: var(--text-light);
+            font-weight: 600;
+            font-size: 1.05rem;
+            padding: 5px 0;
+            position: relative;
+        }
 
-    /* --- Contact Us (Form) --- */
-    .contact-content {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 40px;
-      margin-top: 2rem;
-      justify-content: center;
-    }
-    .contact-info, .contact-form-container {
-      flex: 1;
-      min-width: 300px;
-      background-color: #fff;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-    }
-    .contact-info h3, .contact-form-container h3 {
-      color: #002B4B;
-      text-align: center;
-      margin-bottom: 25px;
-    }
-    .contact-info p {
-      margin-bottom: 15px;
-      font-size: 1rem;
-      color: #555;
-    }
-    .contact-info i {
-      color: #003F6B;
-      margin-right: 10px;
-      font-size: 1.2rem;
-    }
-    .contact-info .social-links a {
-      font-size: 1.8rem;
-      margin-right: 15px;
-      color: #003F6B;
-      transition: color 0.3s ease;
-    }
-    .contact-info .social-links a:hover {
-      color: #00A6FB;
-    }
-    .contact-form label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 600;
-      color: #333;
-    }
-    .contact-form input[type="text"],
-    .contact-form input[type="email"],
-    .contact-form input[type="tel"],
-    .contact-form textarea {
-      width: calc(100% - 20px);
-      padding: 12px;
-      margin-bottom: 20px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 1rem;
-      box-sizing: border-box;
-      transition: border-color 0.3s ease;
-    }
-    .contact-form input[type="text"]:focus,
-    .contact-form input[type="email"]:focus,
-    .contact-form input[type="tel"]:focus,
-    .contact-form textarea:focus {
-      border-color: #00A6FB;
-      outline: none;
-      box-shadow: 0 0 5px rgba(0,166,251,0.5);
-    }
-    .contact-form textarea {
-      resize: vertical;
-      min-height: 120px;
-    }
-    .contact-form button {
-      background-color: #00A6FB;
-      color: #fff;
-      padding: 15px 30px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1.1rem;
-      font-weight: 700;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-      width: 100%;
-    }
-    .contact-form button:hover {
-      background-color: #008CC7;
-      transform: translateY(-3px);
-    }
-    .form-message {
-      margin-top: 15px;
-      padding: 10px;
-      border-radius: 5px;
-      font-weight: 600;
-      text-align: center;
-      display: none;
-    }
-    .form-message.success {
-      background-color: #e6ffe6;
-      color: #008000;
-      border: 1px solid #008000;
-    }
-    .form-message.error {
-      background-color: #ffe6e6;
-      color: #cc0000;
-      border: 1px solid #cc0000;
-    }
+        .main-nav ul li a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
 
-    /* --- Clients & Brands (Existing) --- */
-    .clients ul, .brand-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Adjusted for more columns */
-      gap: 15px; /* Reduced gap */
-      padding: 0;
-      list-style: none;
-      margin-top: 2rem;
-    }
-    .clients li, .brand-grid li {
-      background-color: #fff;
-      padding: 15px 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-      text-align: center;
-      font-size: 1rem;
-      color: #444;
-      transition: transform 0.2s ease;
-    }
-    .clients li:hover, .brand-grid li:hover {
-      transform: translateY(-3px);
-    }
+        .main-nav ul li a:hover::after {
+            width: 100%;
+        }
 
-    /* --- Footer --- */
-    footer {
-      background: #002B4B; /* Deep Navy Blue */
-      color: #fff;
-      text-align: center;
-      padding: 2rem 1rem;
-      margin-top: 3rem;
-      position: relative;
-      font-size: 0.9rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    footer p {
-      margin: 0.5rem 0;
-    }
-    footer a {
-      color: #00A6FB; /* Light Blue Accent */
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    footer a:hover {
-      color: #fff;
-      text-decoration: underline;
-    }
-    .footer-social-links {
-      margin-top: 15px;
-      margin-bottom: 10px;
-    }
-    .footer-social-links a {
-      font-size: 1.5rem;
-      margin: 0 10px;
-      color: #fff;
-      transition: color 0.3s ease;
-    }
-    .footer-social-links a:hover {
-      color: #00A6FB;
-    }
-    .watermark {
-      margin-top: 15px;
-      font-size: 0.75rem;
-      color: rgba(255, 255, 255, 0.6);
-    }
-    .watermark a {
-      color: rgba(255, 255, 255, 0.6);
-      text-decoration: none;
-    }
-    .watermark a:hover {
-      color: #00A6FB;
-    }
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+        }
 
-    /* --- Floating WhatsApp Button --- */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #25D366;
-      color: #fff;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-      z-index: 999;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-    .whatsapp-float:hover {
-      background-color: #1ebc59;
-      transform: scale(1.05);
-    }
-    .whatsapp-float img {
-      width: 30px;
-      height: 30px;
-    }
+        .menu-toggle span {
+            height: 3px;
+            width: 25px;
+            background-color: var(--text-light);
+            margin-bottom: 5px;
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+        }
 
-    /* --- Scroll to Top Button --- */
-    #scrollToTopBtn {
-      display: none; /* Hidden by default */
-      position: fixed; /* Fixed position */
-      bottom: 90px; /* Adjust position above WhatsApp */
-      right: 20px;
-      z-index: 99; /* Higher than WhatsApp */
-      border: none;
-      outline: none;
-      background-color: #003F6B; /* Darker blue */
-      color: white;
-      cursor: pointer;
-      padding: 15px;
-      border-radius: 50%;
-      font-size: 18px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-    #scrollToTopBtn:hover {
-      background-color: #005F99;
-      transform: translateY(-3px);
-    }
+        .menu-toggle.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
 
-    /* --- Responsive Adjustments --- */
-    @media (max-width: 992px) {
-      h1 { font-size: 2.8rem; }
-      h2 { font-size: 2rem; }
-      .hero { padding: 8rem 2rem; }
-      .hero h1 { font-size: 3rem; }
-      .hero p { font-size: 1.1rem; }
-      nav ul li { margin-left: 20px; }
-    }
+        .menu-toggle.open span:nth-child(2) {
+            opacity: 0;
+        }
 
-    @media (max-width: 768px) {
-      header {
-        flex-direction: row; /* Keep logo and nav on same row */
-        justify-content: space-between;
-      }
-      .header-branding {
-        text-align: left;
-      }
-      nav {
-        display: none; /* Hide main nav on small screens */
-        flex-direction: column;
-        width: 100%;
-        position: absolute;
-        top: 80px; /* Below header */
-        left: 0;
-        background-color: #002B4B;
-        padding: 10px 0;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      }
-      nav.active {
-        display: flex; /* Show nav when active */
-      }
-      nav ul {
-        flex-direction: column;
-        align-items: center;
-      }
-      nav ul li {
-        margin: 10px 0;
-      }
-      .menu-toggle {
-        display: flex; /* Show hamburger icon */
-      }
-      .hero { padding: 6rem 1.5rem; }
-      .hero h1 { font-size: 2.5rem; }
-      .hero p { font-size: 1rem; }
-      section { padding: 3rem 1.5rem; }
-      h2 { font-size: 1.8rem; }
-      .about-details, #why-choose-us ul, .product-tabs, .certification-grid, .news-grid, .contact-content, .clients ul, .brand-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-      .csr-content { flex-direction: column; }
-      .contact-info, .contact-form-container { min-width: unset; }
-    }
+        .menu-toggle.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
 
-    @media (max-width: 480px) {
-      h1 { font-size: 2.2rem; }
-      h2 { font-size: 1.6rem; }
-      .logo { height: 50px; }
-      .header-branding h1 { font-size: 1.8rem; }
-      .header-branding p { font-size: 0.8rem; }
-      .hero h1 { font-size: 2rem; }
-      .hero p { font-size: 0.9rem; }
-      .hero .btn { padding: 12px 25px; font-size: 1rem; }
-      section { padding: 2.5rem 1rem; }
-      .about-details div, #why-choose-us ul li, .product-item, .certification-item, .news-item, .career-job, .contact-info, .contact-form-container {
-        padding: 20px;
-      }
-      .product-tabs button { padding: 10px 20px; font-size: 0.9rem; }
-      .whatsapp-float { width: 50px; height: 50px; bottom: 15px; right: 15px; }
-      .whatsapp-float img { width: 25px; height: 25px; }
-      #scrollToTopBtn { bottom: 80px; right: 15px; width: 45px; height: 45px; font-size: 16px; padding: 12px; }
-    }
-  </style>
+        /* --- Hero Section --- */
+        .hero {
+            background: linear-gradient(rgba(0, 63, 107, 0.8), rgba(0, 63, 107, 0.8)), url('https://i.ibb.co/6P0S9N7/6P0S9N7.png') no-repeat center center/cover;
+            color: var(--text-light);
+            text-align: center;
+            padding: 100px 20px;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden; /* For particle effect */
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.3s;
+            animation-fill-mode: both;
+        }
+
+        .hero .btn {
+            background-color: var(--accent-color);
+            color: var(--text-light);
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            animation: zoomIn 1s ease-out 0.6s;
+            animation-fill-mode: both;
+        }
+
+        .hero .btn:hover {
+            background-color: #E66A00;
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* --- Main Content Sections --- */
+        main {
+            padding: 2rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 4rem 2rem;
+            opacity: 0; /* Hidden by default for scroll animation */
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        section:nth-of-type(even) {
+            background-color: var(--bg-light);
+        }
+
+        h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -10px;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+            justify-content: center;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            max-width: 600px;
+        }
+
+        .about-video {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            text-align: center;
+            margin-bottom: 20px; /* Space between video and text */
+        }
+        .about-video iframe {
+            width: 100%;
+            height: 315px; /* Standard YouTube embed height for 16:9 */
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        .about-video iframe:hover {
+            transform: scale(1.02);
+        }
+
+
+        /* Why Choose Us */
+        .why-choose-us ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .why-choose-us li {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .why-choose-us li:hover {
+            transform: translateY(-8px); /* Moved slightly up */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .why-choose-us li strong {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .why-choose-us li strong span {
+            font-size: 1.8rem;
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+
+        .why-choose-us li p {
+            font-size: 1rem;
+            color: #555;
+            flex-grow: 1; /* Ensures text takes available space */
+        }
+
+        /* Products Grid (Unified) */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjusted for fewer columns initially */
+            gap: 25px;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        /* Ensure two rows for desktop, flexible for smaller screens */
+        @media (min-width: 992px) {
+            .product-grid {
+                grid-template-columns: repeat(4, 1fr); /* 4 columns on large screens */
+            }
+        }
+        @media (max-width: 991px) and (min-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr); /* 3 columns on medium screens */
+            }
+        }
+        @media (max-width: 767px) {
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Flexible on small screens */
+            }
+        }
+
+        .product-item {
+            background-color: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .product-item:hover {
+            transform: translateY(-8px); /* Moved slightly up */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+        }
+
+        .product-item h3 {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+        }
+
+        .product-item .brand-logos-vertical img {
+            width: 100%; /* Make brand logo image fill its container */
+            height: auto; /* Maintain aspect ratio */
+            max-height: 200px; /* Limit height if needed */
+            object-fit: contain;
+            margin-top: 1rem;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+        }
+
+        /* Quality & Certifications */
+        .certification-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .certification-item {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .certification-item:hover {
+            transform: translateY(-8px); /* Moved slightly up */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .certification-item .icon-placeholder {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .certification-item h3 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+        }
+
+        .certification-item p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        /* CSR/Commitment Section */
+        .csr-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+            justify-content: center;
+            text-align: left;
+        }
+
+        .csr-text {
+            flex: 1;
+            min-width: 300px;
+            max-width: 600px;
+        }
+
+        .csr-image {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .csr-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+
+        /* News Section */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .news-item {
+            background-color: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .news-item:hover {
+            transform: translateY(-8px); /* Moved slightly up */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .news-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .news-item-content {
+            padding: 1.5rem;
+        }
+
+        .news-item-content h3 {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+            text-align: left;
+        }
+
+        .news-item-content p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .news-item-content .read-more {
+            color: var(--secondary-color);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .news-item-content .read-more i {
+            margin-left: 8px;
+            transition: margin-left 0.3s ease;
+        }
+
+        .news-item-content .read-more:hover i {
+            margin-left: 12px;
+        }
+
+        /* Testimonials */
+        .testimonials-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+            padding: 2rem 0;
+        }
+
+        .testimonials-carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .testimonial-slide {
+            min-width: 100%;
+            box-sizing: border-box;
+            background-color: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .testimonial-slide img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+            border: 3px solid var(--accent-color);
+        }
+
+        .testimonial-slide p {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-slide h4 {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .carousel-nav-dots {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background-color: var(--primary-color);
+            transform: scale(1.2);
+        }
+
+        /* Careers Section */
+        .career-job {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .career-job:hover {
+            transform: translateY(-8px); /* Moved slightly up */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .career-job h3 {
+            font-family: var(--font-heading);
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .career-job p {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .career-job ul {
+            list-style: disc;
+            margin-left: 20px;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .career-job ul li {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .career-job .apply-btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--text-light);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .career-job .apply-btn:hover {
+            background-color: #E66A00;
+            transform: translateY(-2px);
+        }
+
+        /* Clients Section */
+        .clients ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .clients li {
+            background-color: #fff;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            font-family: var(--font-heading);
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .clients li:hover {
+            transform: translateY(-8px); /* Moved slightly up */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+
+        /* Contact Section */
+        .contact-section {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            color: var(--text-light);
+        }
+
+        .contact-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 3rem;
+            text-align: left;
+        }
+
+        .contact-info, .contact-form-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            background-color: #002542; /* Slightly lighter dark blue */
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .contact-info h3, .contact-form-container h3 {
+            font-family: var(--font-heading);
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .contact-info i {
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            padding-top: 2px; /* Align icon better with multi-line text */
+        }
+
+        .contact-info a {
+            color: var(--secondary-color);
+            word-break: break-all; /* Prevent long emails from overflowing */
+        }
+
+        .social-links {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Contact Form */
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form input[type="tel"],
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #00355A;
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: #aaa;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(0, 166, 251, 0.3);
+        }
+
+        .contact-form button {
+            background-color: var(--accent-color);
+            color: var(--text-light);
+            padding: 14px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%;
+        }
+
+        .contact-form button:hover {
+            background-color: #E66A00;
+            transform: translateY(-2px);
+        }
+
+        .form-message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .form-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border-color: #c3e6cb;
+        }
+
+        .form-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+        }
+
+        /* Google Map */
+        .map-container {
+            width: 100%;
+            height: 400px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+        }
+
+        .footer-social-links {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .footer-social-links a {
+            color: var(--text-light);
+            font-size: 1.3rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-social-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .watermark {
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .watermark a {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-float img {
+            width: 35px;
+            height: 35px;
+        }
+
+        /* Scroll to Top Button */
+        #scrollToTopBtn {
+            display: none; /* Hidden by default */
+            position: fixed; /* Fixed/sticky position */
+            bottom: 40px; /* Place the button at the bottom of the page */
+            right: 110px; /* Place the button 30px from the right */
+            z-index: 999; /* Make sure it does not overlap */
+            border: none; /* Remove borders */
+            outline: none; /* Remove outline */
+            background-color: var(--secondary-color); /* Set a background color */
+            color: white; /* Text color */
+            cursor: pointer; /* Add a mouse pointer on hover */
+            padding: 15px; /* Some padding */
+            border-radius: 10px; /* Rounded corners */
+            font-size: 18px; /* Increase font size */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        #scrollToTopBtn:hover {
+            background-color: var(--primary-color); /* Add a darker background on hover */
+            transform: translateY(-2px);
+        }
+
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .navbar {
+                flex-direction: column;
+                padding: 1rem 2rem;
+            }
+
+            .logo {
+                margin-bottom: 1rem;
+            }
+
+            .main-nav {
+                width: 100%;
+                display: none; /* Hidden by default */
+                flex-direction: column;
+                text-align: center;
+                background-color: var(--primary-color);
+                box-shadow: var(--shadow);
+            }
+
+            .main-nav.active {
+                display: flex; /* Show when active */
+            }
+
+            .main-nav ul {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .main-nav ul li {
+                margin: 0;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .main-nav ul li:first-child {
+                border-top: none;
+            }
+
+            .main-nav ul li a {
+                display: block;
+                padding: 15px 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+                position: absolute;
+                right: 20px;
+                top: 25px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            section {
+                padding: 3rem 1.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .about-content, .csr-content, .contact-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-video {
+                order: -1; /* Video appears above text on mobile */
+            }
+
+            .why-choose-us ul, .product-grid, .certification-grid, .news-grid, .clients ul {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonial-slide {
+                padding: 2rem 1.5rem;
+            }
+
+            .contact-info, .contact-form-container {
+                padding: 2rem;
+            }
+
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 25px;
+            }
+            .whatsapp-float img {
+                width: 30px;
+                height: 30px;
+            }
+
+            #scrollToTopBtn {
+                bottom: 20px;
+                right: 80px;
+                padding: 12px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-
-  <header>
-    <div class="logo-container">
-      <img src="https://i.ibb.co/Z6CCT1DD/Screenshot-2025-05-22-235207-removebg-preview.png" alt="RK Builds Mart Logo" class="logo" onerror="this.onerror=null;this.src='https://placehold.co/60x60/002B4B/FFFFFF?text=RK+Logo';">
-      <div class="header-branding">
-        <h1>RK Buildss Mart</h1>
-        <p>Your Trusted Building Material Supplier</p>
-      </div>
-    </div>
-    <nav id="mainNav">
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#products">Products</a></li>
-        <li><a href="#quality">Quality</a></li>
-        <li><a href="#news">News</a></li>
-        <li><a href="#careers">Careers</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-    <button class="menu-toggle" id="menuToggle">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </button>
-  </header>
-
-  <main>
-    <section class="hero" id="home">
-      <div class="hero-content">
-        <h1>Building the Future, Brick by Brick</h1>
-        <p>RK Builds Mart provides top-tier building materials, ensuring strength, durability, and innovation for every project. Partner with us for excellence.</p>
-        <a href="#contact" class="btn">Get a Quote Today</a>
-      </div>
-    </section>
-
-    <section id="about">
-      <h2>🏗️ About Us</h2>
-      <p>
-        RK Pipes & Fittings, proudly operating as RK Builds Mart, stands as a top-tier wholesale agency with an impressive 25+ years of unwavering experience. We are profoundly dedicated to supplying high-grade building materials across the entirety of Tamil Nadu, establishing ourselves as an indispensable cornerstone in the dynamic construction industry. Our commitment extends beyond mere supply; we aim to foster growth and enable success for all our partners.
-      </p>
-      <p>
-        Our robust and strategically developed logistical network is a key differentiator that truly sets us apart. This extensive network empowers us to efficiently serve over 500 outlets within the vibrant urban landscape of Chennai and an even more expansive network of more than 1000 outlets throughout the entire state. This unparalleled reach ensures that timely and consistent material delivery is a guarantee, regardless of the project's scale or geographical location, thereby minimizing downtime and maximizing productivity for our clients.
-      </p>
-      <p>
-        We are widely recognized and highly respected for our unwavering reliability, exceptional speed in delivery, and highly competitive pricing strategies. These core values have been instrumental in cultivating lasting and strong relationships with a diverse and esteemed clientele, including major contractors, discerning retailers, and leading real estate developers. From supporting the foundational needs of mega infrastructure projects to supplying essential materials for intricate residential developments, RK Builds Mart is honored to be the steadfast backbone of construction material supply. Our unwavering commitment to excellence is further exemplified by our in-house manufactured pipes and tanks, which have consistently earned industry-wide recognition for their superior strength, remarkable durability, and uncompromising overall quality. We continuously strive to innovate and provide cutting-edge solutions that proactively meet and exceed the evolving demands of the modern construction sector.
-      </p>
-<iframe width="1100" height="630" src="https://www.youtube.com/embed/S1LedZ6o4xY?si=g3ECzbN0vmOgyU2O" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      <div class="about-details">
-        <div>
-          <i class="fas fa-bullseye"></i>
-          <h3>Our Mission</h3>
-          <p>To deliver superior quality building materials with unmatched efficiency, fostering sustainable growth and contributing to robust infrastructure development across the region.</p>
-        </div>
-        <div>
-          <i class="fas fa-eye"></i>
-          <h3>Our Vision</h3>
-          <p>To be the most trusted and preferred partner in the construction industry, renowned for innovation, reliability, and commitment to excellence.</p>
-        </div>
-        <div>
-          <i class="fas fa-handshake"></i>
-          <h3>Our Values</h3>
-          <p>Integrity, Customer Focus, Quality Excellence, Innovation, and Teamwork are the cornerstones of our operations and relationships.</p>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>👤 Managing Director - Rohith Kani</h2>
-      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 30px; margin-top: 2rem;">
-        <div style="flex: 1; min-width: 280px; text-align: center;">
-          <img src="https://i.ibb.co/Xkdk5zcJ/Xkdk5zcJ.png" alt="Rohith Kani" style="border-radius: 50%; width: 250px; height: 250px; object-fit: cover; border: 5px solid #00A6FB; box-shadow: 0 5px 15px rgba(0,0,0,0.2);" onerror="this.onerror=null;this.src='https://placehold.co/250x250/003F6B/FFFFFF?text=Rohith+Kani';">
-        </div>
-        <div style="flex: 2; min-width: 350px;">
-          <p>
-            Rohith Kani is the visionary leader and driving force behind RK Builds Mart. With more than two decades of profound business expertise and an acute understanding of market dynamics, he stands as a true force of innovation within the building material industry. Under his dynamic leadership, RK Builds Mart has not only expanded its reach but has also solidified its position as one of the most respected and reliable wholesale agencies in Tamil Nadu.
-            <br><br>
-            His deep industry knowledge, coupled with unmatched relationship management skills and a steadfast customer-centric approach, are the pillars that propel the organization forward. Rohith is personally committed to ensuring that every single product delivered by RK Builds Mart adheres to the most rigorous quality standards and contributes to the long-term success of our clients' projects.
-            <br><br>
-            He continuously champions the adoption of new technologies and sustainable practices, ensuring RK Builds Mart remains at the forefront of the industry. Rohith's leadership fosters a culture of excellence, integrity, and continuous improvement, making RK Builds Mart a preferred partner for all construction material needs. His strategic vision has been pivotal in navigating market challenges and capitalizing on growth opportunities, cementing the company's legacy for years to come.
-          </p>
-          <p style="margin-top: 20px;">
-            <a href="https://in.linkedin.com/in/rohith-kani-294002342" target="_blank" class="btn" style="padding: 10px 20px;">
-              <i class="fab fa-linkedin"></i> Connect on LinkedIn
+    <header>
+        <div class="navbar">
+            <a href="#" class="logo">
+                <img src=https://ibb.co/Z6CCT1DD alt="RK Builds Mart Logo">
+                RK Builds Mart
             </a>
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="why-choose-us">
-      <h2>Why Choose RK Builds Mart?</h2>
-      <ul>
-        <li>
-          <strong><span role="img" aria-label="trophy">🏆</span> 25+ Years of Industry Leadership</strong><br>
-          With over two decades of experience, we're not just suppliers; we're seasoned experts in high-grade building materials across Tamil Nadu, bringing unparalleled insights and expertise to every project.
-        </li>
-        <li>
-          <strong><span role="img" aria-label="truck">🚚</span> Unmatched Logistical Reach</strong><br>
-          Our robust network empowers us to reliably serve over 500 outlets in Chennai and more than 1000 across the state, ensuring materials are always where you need them, exactly when you need them.
-        </li>
-        <li>
-          <strong><span role="img" aria-label="hourglass with flowing sand">⏱️</span> Reliability & Speed You Can Trust</strong><br>
-          We're renowned for our prompt deliveries and consistent supply, a crucial factor in keeping your construction projects on schedule and within budget, every single time.
-        </li>
-        <li>
-          <strong><span role="img" aria-label="strong arm">💪</span> Superior In-House Products</strong><br>
-          Our own manufactured pipes and tanks are recognized industry-wide for their exceptional strength, durability, and unwavering quality, providing you with foundational materials that truly last.
-        </li>
-        <li>
-          <strong><span role="img" aria-label="handshake">🤝</span> Competitive & Transparent Pricing</strong><br>
-          We believe in building lasting relationships through fair and competitive pricing, ensuring you consistently receive the best value without ever compromising on the superior quality you expect.
-        </li>
-        <li>
-          <strong><span role="img" aria-label="building construction">🏗️</span> Comprehensive Material Solutions</strong><br>
-          From the foundational backbone of mega infrastructure projects to the intricate needs of residential developments, we supply a wide and complete range of essential building materials, making us your ultimate one-stop shop.
-        </li>
-        <li>
-          <strong><span role="img" aria-label="star">⭐</span> Trusted by Industry Leaders</strong><br>
-          We've cultivated strong, enduring relationships with prominent contractors, esteemed retailers, and leading real estate developers who consistently rely on us for their most critical and demanding projects.
-        </li>
-        <li>
-          <strong><span role="img" aria-label="person behind computer">🧑‍💻</span> Dedicated Customer Focus</strong><br>
-          Your project's success is our highest priority. We are profoundly committed to thoroughly understanding your unique needs and consistently providing tailored solutions coupled with exceptional service and support.
-        </li>
-      </ul>
-    </section>
-
-    <section id="products">
-      <h2>🛠️ Our Products & Solutions</h2>
-      <div class="product-tabs">
-        <button class="tab-button active" data-tab="construction">Construction Essentials</button>
-        <button class="tab-button" data-tab="finishings">Finishing & Fixtures</button>
-        <button class="tab-button" data-tab="infrastructure">Infrastructure & Specialty</button>
-      </div>
-
-      <div id="construction" class="tab-content active">
-        <div class="product-grid">
-          <div class="product-item">
-            <img src="https://i.ibb.co/twHC7cj8/twHC7cj8.png" alt="Cement Bags" onerror="this.onerror=null;this.src='https://placehold.co/80x80/003F6B/FFFFFF?text=Cement';">
-            <h3>Cement</h3>
-          </div>
-          <div class="product-item">
-            <img src="https://i.ibb.co/JRf6Mm61/JRf6Mm61.png" alt="Steel Rebars" onerror="this.onerror=null;this.src='https://placehold.co/80x80/003F6B/FFFFFF?text=Steel';">
-            <h3>Steel</h3>
-          </div>
-          <div class="product-item">
-            <img src="https://i.ibb.co/yFLj0Th1/yFLj0Th1.png" alt="Sand Pile" onerror="this.onerror=null;this.src='https://placehold.co/80x80/003F6B/FFFFFF?text=Sand+Agg';">
-            <h3>Sand & Aggregates</h3>
-          </div>
-          <div class="product-item">
-            <img src="https://i.ibb.co/995HBZrJ/995HBZrJ.png" alt="Bricks Stack" onerror="this.onerror=null;this.src='https://placehold.co/80x80/003F6B/FFFFFF?text=Bricks';">
-            <h3>Bricks & Blocks</h3>
-          </div>
-          <div class="product-item">
-            <img src="https://i.ibb.co/twHC7cj8/twHC7cj8.png" alt="Ready Mix Concrete" onerror="this.onerror=null;this.src='https://placehold.co/80x80/003F6B/FFFFFF?text=Concrete';">
-            <h3>Ready Mix Concrete</h3>
-          </div>
-          <div class="product-item">
-            <img src="https://i.ibb.co/nqRsdVj8/nqRsdVj8.png" alt="Waterproofing material" onerror="this.onerror=null;this.src='https://placehold.co/80x80/003F6B/FFFFFF?text=Waterprf';">
-            <h3>Waterproofing</h3>
-          </div>
-        </div>
-      </div>
-
-      <div id="finishings" class="tab-content">
-        <div class="product-grid">
-          <div class="product-item">
-            <img src="https://i.ibb.co/tT0PS7S1/tT0PS7S1.png" alt="Tiles" onerror="this.onerror=null;this.src='https://placehold.co/80x80/003F6B/FFFFFF?text=Tiles';">
-            <h3>Tiles & Flooring</h3>
-          </div>
-          <div class="product-item">
-            <img src="https://i.ibb.co/mrtXvBKT/mrtXvBKT.png" alt="Paint Cans" onerror="this.onerror=null;this.src='https://placehold.co/80x80/003F6B/FFFFFF?text=Paint';">
-            <h3>Paint & Putty</h3>
-          </div>
-          <div class="product-item">
-            <img src="https://i.ibb.co/rGfn6tqy/rGfn6tqy.png" alt="Sanitary Fittings" onerror="this.onerror=null;this.src='https://placehold.co/80x80/003F6B/FFFFFF?text=Sanitary';">
-            <h3>Sanitary & CP Fittings</h3>
-          </div>
-          <div class="product-item">
-            <img src="https://i.ibb.co/q3ghBrrJ/q3ghBrrJ.png" alt="Kitchen Sink" onerror="this.onerror=null;this.src='https://placehold.co/80x80/003F6B/FFFFFF?text=Kitchen';">
-            <h3>Kitchen Sinks</h3>
-          </div>
-          <div class="product-item">
-            <img src="https://i.ibb.co/nspdhMzP/nspdhMzP.png" alt="Electrical Wires" onerror="this.onerror=null;this.src='https://placehold.co/80x80/003F6B/FFFFFF?text=Elec';">
-            <h3>Electricals</h3>
-          </div>
-          <div class="product-item">
-            <img src="https://i.ibb.co/Mk3PsXVM/Mk3PsXVM.png" alt="Hardware Tools" onerror="this.onerror=null;this.src='https://placehold.co/80x80/003F6B/FFFFFF?text=Hardware';">
-            <h3>Hardware</h3>
-          </div>
-        </div>
-      </div>
-
-      <div id="infrastructure" class="tab-content">
-        <div class="product-grid">
-          <div class="product-item">
-            <img src="https://i.ibb.co/hx8wvqP8/hx8wvqP8.png" alt="Pipes" onerror="this.onerror=null;this.src='https://placehold.co/80x80/003F6B/FFFFFF?text=Pipes';">
-            <h3>Pipes & Fittings</h3>
-          </div>
-          <div class="product-item">
-            <img src="https://i.ibb.co/rKhqY0v9/rKhqY0v9.png" alt="Water Tanks" onerror="this.onerror=null;this.src='https://placehold.co/80x80/003F6B/FFFFFF?text=Tanks';">
-            <h3>Water Storage Tanks</h3>
-          </div>
-          <div class="product-item">
-            <img src="https://i.ibb.co/n8zB5c2m/n8zB5c2m.png" alt="Water Motors" onerror="this.onerror=null;this.src='https://placehold.co/80x80/003F6B/FFFFFF?text=Motors';">
-            <h3>Water Motors & Pumps</h3>
-          </div>
-          <div class="product-item">
-            <img src="https://i.ibb.co/S77m4krD/S77m4krD.png" alt="Drainage System" onerror="this.onerror=null;this.src='https://placehold.co/80x80/003F6B/FFFFFF?text=Drain';">
-            <h3>Drainage Systems</h3>
-          </div>
-          <div class="product-item">
-            <img src="https://i.ibb.co/C5rKdpKc/C5rKdpKc.png" alt="Roofing Material" onerror="this.onerror=null;this.src='https://placehold.co/80x80/003F6B/FFFFFF?text=Roofing';">
-            <h3>Roofing Materials</h3>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="quality">
-      <h2>🏆 Certifications & Quality Assurance</h2>
-      <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem;">
-        At RK Builds Mart, quality is not just a standard; it's our foundational principle. We are committed to providing materials that meet and exceed industry benchmarks, ensuring the longevity and safety of your constructions. Our stringent quality control processes and recognized certifications reflect our unwavering dedication to excellence.
-      </p>
-      <div class="certification-grid">
-        <div class="certification-item">
-          <i class="fas fa-certificate icon-placeholder"></i> <h3>ISO 9001:2015 Certified</h3>
-          <p>Our quality management system ensures consistent delivery of products and services that meet customer and regulatory requirements.</p>
-        </div>
-        <div class="certification-item">
-          <i class="fas fa-gavel icon-placeholder"></i> <h3>BIS Standards Adherence</h3>
-          <p>All our products conform to Bureau of Indian Standards (BIS) specifications, guaranteeing performance and reliability.</p>
-        </div>
-        <div class="certification-item">
-          <i class="fas fa-leaf icon-placeholder"></i> <h3>Eco-Friendly Practices</h3>
-          <p>Committed to sustainable sourcing and environmentally responsible manufacturing processes where possible.</p>
-        </div>
-        <div class="certification-item">
-          <i class="fas fa-flask icon-placeholder"></i> <h3>Rigorous Lab Testing</h3>
-          <p>Every batch of our in-house products undergoes comprehensive testing for strength, durability, and performance.</p>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>🌱 Corporate Social Responsibility</h2>
-      <div class="csr-content">
-        <div class="csr-text">
-          <p>
-            At RK Builds Mart, we believe in building more than just structures; we build communities and a sustainable future. Our CSR initiatives are deeply embedded in our operations, reflecting our commitment to environmental stewardship, social welfare, and ethical governance. We actively strive to minimize our ecological footprint through responsible sourcing, waste reduction programs, and supporting green building practices.
-          </p>
-          <p>
-            Beyond environmental efforts, we invest in local community development, supporting education, health, and skill-building programs. We ensure fair labor practices and foster a safe and inclusive work environment for our employees. Our goal is to contribute positively to the society we operate in, creating long-term value for all stakeholders.
-          </p>
-          </div>
-        <div class="csr-image">
-          <img src="https://i.ibb.co/V0mz9426/V0mz9426.png" alt="Sustainability Initiative - Green Building" onerror="this.onerror=null;this.src='https://placehold.co/400x300/28a745/FFFFFF?text=Sustainability+Impact';">
-        </div>
-      </div>
-    </section>
-
-    <section id="news">
-      <h2>📰 Latest News & Updates</h2>
-      <div class="news-grid">
-        <div class="news-item">
-          <img src="https://i.ibb.co/QF062hbs/QF062hbs.png" alt="Construction Site" onerror="this.onerror=null;this.src='https://placehold.co/400x200/003F6B/FFFFFF?text=News+1';">
-          <div class="news-item-content">
-            <h3>RK Builds Mart Expands Network to Coimbatore</h3>
-            <p>We are thrilled to announce the opening of our new distribution hub in Coimbatore, strengthening our logistical capabilities in Western Tamil Nadu.</p>
-            <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-        <div class="news-item">
-          <img src="https://i.ibb.co/Zq0kgsY/Zq0kgsY.png" alt="Eco-Friendly Materials" onerror="this.onerror=null;this.src='https://placehold.co/400x200/003F6B/FFFFFF?text=News+2';">
-          <div class="news-item-content">
-            <h3>Introducing New Eco-Friendly Concrete Solutions</h3>
-            <p>Our latest range of sustainable concrete mixes offers reduced carbon footprint without compromising on strength or durability.</p>
-            <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-        <div class="news-item">
-          <img src="https://i.ibb.co/s9XyqTrJ/s9XyqTrJ.png" alt="Celebrating Milestones" onerror="this.onerror=null;this.src='https://placehold.co/400x200/003F6B/FFFFFF?text=News+3';">
-          <div class="news-item-content">
-            <h3>Celebrating 25 Years of Building Excellence</h3>
-            <p>Join us as we celebrate a quarter-century of dedicated service and significant contributions to the construction industry.</p>
-            <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>🗣️ What Our Clients Say</h2>
-      <div class="testimonials-container">
-        <div class="testimonials-carousel" id="testimonialCarousel">
-          <div class="testimonial-slide">
-            <img src="https://i.ibb.co/Hp7sVym9/Hp7sVym9.png" alt="Client Photo 1" onerror="this.onerror=null;this.src='https://placehold.co/80x80/00A6FB/FFFFFF?text=Client+1';">
-            <p>"RK Builds Mart has been our go-to supplier for years. Their commitment to quality and prompt delivery is unmatched. They truly understand the demands of large-scale construction."</p>
-            <h4>Thanesh</h4>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
-          <div class="testimonial-slide">
-            <img src="https://i.ibb.co/Hp7sVym9/Hp7sVym9.png" alt="Client Photo 2" onerror="this.onerror=null;this.src='https://placehold.co/80x80/00A6FB/FFFFFF?text=Client+2';">
-            <p>"The range of products and the exceptional service make RK Builds Mart stand out. Their team is knowledgeable and always ready to assist."</p>
-            <h4>Gokul</h4>
+            <nav class="main-nav" id="mainNav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#quality">Quality</a></li>
+                    <li><a href="#news">News</a></li>
+                    <li><a href="#careers">Careers</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <h1>Building Foundations, Creating Futures.</h1>
+            <p>Your Trusted Partner for Quality Building Materials in Tamil Nadu.</p>
+            <a href="#contact" class="btn">Get a Quote Today</a>
+        </section>
+
+        <section id="products">
+            <h2>🛠️ Our Products & Solutions</h2>
+            <div class="product-grid">
+                <div class="product-item">
+                    <img src="https://i.ibb.co/twHC7cj8/twHC7cj8.png" alt="Cement Bags" onerror="this.onerror=null;this.src='https://placehold.co/80x80/003F6B/FFFFFF?text=Cement';">
+                    <h3>Cement</h3>
+                    <div class="brand-logos-vertical">
+                        <img src="https://i.ibb.co/Q8Q492p/Cement-brands.png" alt="Cement Brands">
+                    </div>
+                </div>
+                <div class="product-item">
+                    <img src="https://i.ibb.co/JRf6Mm61/JRf6Mm61.png" alt="Steel Rebars" onerror="this.onerror=null;this.src='https://placehold.co/80x80/003F6B/FFFFFF?text=Steel';">
+                    <h3>Steel</h3>
+                    <div class="brand-logos-vertical">
+                        <img src="https://i.ibb.co/d2xL58q/Steel-brands.png" alt="Steel Brands">
+                    </div>
+                </div>
+                <div class="product-item">
+                    <img src="https://i.ibb.co/hx8wvqP8/hx8wvqP8.png" alt="Pipes" onerror="this.onerror=null;this.src='https://placehold.co/80x80/003F6B/FFFFFF?text=Pipes';">
+                    <h3>Pipes, Pumps & Tanks</h3>
+                    <div class="brand-logos-vertical">
+                        <img src="https://i.ibb.co/Lg5m35G/Pipes-brands.png" alt="Pipes Pumps Tanks Brands">
+                    </div>
+                </div>
+                <div class="product-item">
+                    <img src="https://i.ibb.co/rGfn6tqy/rGfn6tqy.png" alt="Sanitary Fittings" onerror="this.onerror=null;this.src='https://placehold.co/80x80/003F6B/FFFFFF?text=Sanitary';">
+                    <h3>Sanitaryware & CP Fittings</h3>
+                    <div class="brand-logos-vertical">
+                        <img src="https://i.ibb.co/yY11h2y/Sanitary-brands.png" alt="Sanitaryware Brands">
+                    </div>
+                </div>
+                <div class="product-item">
+                    <img src="https://i.ibb.co/nspdhMzP/nspdhMzP.png" alt="Electrical Wires" onerror="this.onerror=null;this.src='https://placehold.co/80x80/003F6B/FFFFFF?text=Elec';">
+                    <h3>Electrical Wires & Switches</h3>
+                    <div class="brand-logos-vertical">
+                        <img src="https://i.ibb.co/gVW2z8B/Electricals-brands.png" alt="Electrical Brands">
+                    </div>
+                </div>
+                <div class="product-item">
+                    <img src="https://i.ibb.co/mrtXvBKT/mrtXvBKT.png" alt="Paint Cans" onerror="this.onerror=null;this.src='https://placehold.co/80x80/003F6B/FFFFFF?text=Paint';">
+                    <h3>Paints & Putty</h3>
+                    <div class="brand-logos-vertical">
+                        <img src="https://i.ibb.co/Qc9f6yM/Paints-brands.png" alt="Paint Brands">
+                    </div>
+                </div>
+                <div class="product-item">
+                    <img src="https://i.ibb.co/yFLj0Th1/yFLj0Th1.png" alt="Sand Pile" onerror="this.onerror=null;this.src='https://placehold.co/80x80/003F6B/FFFFFF?text=Sand+Agg';">
+                    <h3>Bricks & Aggregates</h3>
+                    <div class="brand-logos-vertical">
+                        <img src="https://i.ibb.co/r7b973V/Bricks-Aggregates-brands.png" alt="Bricks Aggregates Brands">
+                    </div>
+                </div>
+                <div class="product-item">
+                  <img src="https://i.ibb.co/hx8wvqP8/hx8wvqP8.png" alt="Tank and Motor" onerror="this.onerror=null;this.src='https://placehold.co/80x80/003F6B/FFFFFF?text=Tank%20&%20Motor';">
+                  <h3>Tank and Motor</h3>
+                  <div class="brand-logos-vertical">
+                      <img src="https://i.ibb.co/Lg5m35G/Pipes-brands.png" alt="Tank and Motor Brands"> </div>
+              </div>
+                </div>
+        </section>
+        <section id="about">
+            <h2>🌍 About RK Builds Mart</h2>
+            <div class="about-content">
+                <div class="about-video">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?si=D8wR7v5o7QnB2bEa&list=PLj_tJ1P_a8M-W90-Z6o8c-M5q6X4Y5p3p" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="about-text">
+                    <p>
+                        With more than 35 years in the construction materials business, RK Builds Mart has grown from a visionary startup into a powerhouse in the South Indian construction materials sector. With decades of dedicated service, we have become synonymous with reliability, quality, and comprehensive solutions for projects of all scales. Our journey began with a simple mission: to provide unparalleled foundational materials that empower builders to create lasting legacies.
+                    </p>
+                    <p>
+                        From our humble beginnings, we have expanded our reach and diversified our product portfolio, continuously adapting to the evolving needs of the construction industry. Today, RK Builds Mart stands as a testament to unwavering commitment, strategic foresight, and a client-centric approach. We pride ourselves on fostering strong partnerships, driven by mutual growth and a shared vision for excellence in every brick, beam, and pipe.
+                    </p>
+                </div>
             </div>
-          <div class="testimonial-slide">
-            <img src="https://i.ibb.co/Hp7sVym9/Hp7sVym9.png" alt="Client Photo 3" onerror="this.onerror=null;this.src='https://placehold.co/80x80/00A6FB/FFFFFF?text=Client+3';">
-            <p>"We rely on RK Builds Mart for critical materials. Their consistency in product quality and reliable supply chain significantly streamline our projects."</p>
-            <h4>Venkat</h4>
+        </section>
+
+        <section>
+            <h2>✨ Why Choose RK Builds Mart?</h2>
+            <ul class="why-choose-us">
+                <li>
+                    <strong><span role="img" aria-label="shield">🛡️</span> Decades of Industry Expertise</strong><br>
+                    Leverage over 35 years of hands-on experience and deep market understanding to navigate your project's material needs with confidence and precision.
+                </li>
+                <li>
+                    <strong><span role="img" aria-label="fast delivery truck">🚚</span> Robust Logistics & Timely Delivery</strong><br>
+                    Our extensive logistics network and strategic depot locations across Tamil Nadu ensure swift, dependable, and efficient delivery right to your construction site, keeping your projects on schedule.
+                </li>
+                <li>
+                    <strong><span role="img" aria-label="strong arm">💪</span> Superior In-House Products</strong><br>
+                    Our own manufactured pipes and tanks are recognized industry-wide for their exceptional strength, durability, and unwavering quality, providing you with foundational materials that truly last.
+                </li>
+                <li>
+                    <strong><span role="img" aria-label="handshake">🤝</span> Competitive & Transparent Pricing</strong><br>
+                    We believe in building lasting relationships through fair and competitive pricing, ensuring you consistently receive the best value without ever compromising on the superior quality you expect.
+                </li>
+                <li>
+                    <strong><span role="img" aria-label="building construction">🏗️</span> Comprehensive Material Solutions</strong><br>
+                    From the foundational backbone of mega infrastructure projects to the intricate needs of residential developments, we supply a wide and complete range of essential building materials, making us your ultimate one-stop shop.
+                </li>
+                <li>
+                    <strong><span role="img" aria-label="star">⭐</span> Trusted by Industry Leaders</strong><br>
+                    We've cultivated strong, enduring relationships with prominent contractors, esteemed retailers, and leading real estate developers who consistently rely on us for their most critical and demanding projects.
+                </li>
+                <li>
+                    <strong><span role="img" aria-label="person behind computer">🧑‍💻</span> Dedicated Customer Focus</strong><br>
+                    Your project's success is our highest priority. We are profoundly committed to thoroughly understanding your unique needs and consistently providing tailored solutions coupled with exceptional service and support.
+                </li>
+            </ul>
+        </section>
+
+        <section id="quality">
+            <h2>🛠️ Our Guiding Principles & Standards</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem;">
+                At RK Builds Mart, every product and service is underpinned by a steadfast commitment to excellence. Our operations are guided by rigorous industry standards and ethical principles, ensuring that we deliver not just materials, but lasting value and trust. Our dedication to quality is woven into the very fabric of our organization.
+            </p>
+            <div class="certification-grid">
+                <div class="certification-item">
+                    <i class="fas fa-certificate icon-placeholder"></i> <h3>ISO 9001:2015 Certified</h3>
+                    <p>Our quality management system ensures consistent delivery of products and services that meet customer and regulatory requirements.</p>
+                </div>
+                <div class="certification-item">
+                    <i class="fas fa-gavel icon-placeholder"></i> <h3>BIS Standards Adherence</h3>
+                    <p>All our products conform to Bureau of Indian Standards (BIS) specifications, guaranteeing performance and reliability.</p>
+                </div>
+                <div class="certification-item">
+                    <i class="fas fa-leaf icon-placeholder"></i> <h3>Eco-Friendly Practices</h3>
+                    <p>Committed to sustainable sourcing and environmentally responsible manufacturing processes where possible.</p>
+                </div>
+                <div class="certification-item">
+                    <i class="fas fa-flask icon-placeholder"></i> <h3>Rigorous Lab Testing</h3>
+                    <p>Every batch of our in-house products undergoes comprehensive testing for strength, durability, and performance.</p>
+                </div>
             </div>
+        </section>
+
+        <section>
+            <h2>🌱 Building Responsibly, Together</h2>
+            <div class="csr-content">
+                <div class="csr-text">
+                    <p>
+                        At RK Builds Mart, our vision extends beyond commerce to encompass a profound commitment to our environment and the communities we serve. We champion sustainable practices across our entire value chain, from meticulously selecting eco-conscious materials to optimizing our logistics for minimal environmental footprint. Our dedication to green initiatives helps build a more sustainable future for everyone.
+                    </p>
+                    <p>
+                        We also believe in giving back to the vibrant communities that have supported our growth. Through various outreach programs, we actively contribute to local development, focusing on education, health, and vocational training. Our approach fosters an inclusive and empowering work environment, ensuring that every member of the RK Builds Mart family thrives. We are committed to building strong, resilient communities, just as we build durable structures.
+                    </p>
+                </div>
+                <div class="csr-image">
+                    <img src="https://i.ibb.co/V0mz9426/V0mz9426.png" alt="Sustainability Initiative - Green Building" onerror="this.onerror=null;this.src='https://placehold.co/400x300/28a745/FFFFFF?text=Sustainability+Impact';">
+                </div>
+            </div>
+        </section>
+
+        <section id="news">
+            <h2>📰 Latest News & Updates</h2>
+            <div class="news-grid" style="grid-template-columns: 1fr;">
+                <div class="news-item">
+                    <img src="https://i.ibb.co/s9XyqTrJ/s9XyqTrJ.png" alt="Celebrating Milestones" onerror="this.onerror=null;this.src='https://placehold.co/400x200/003F6B/FFFFFF?text=News+3';">
+                    <div class="news-item-content">
+                        <h3>Celebrating 35 Years of Building Excellence!</h3>
+                        <p>Join us as we proudly celebrate 35 remarkable years of unwavering commitment, groundbreaking innovation, and impactful contributions to the construction industry in Tamil Nadu.
+
+                          From humble beginnings to becoming a trusted name in the field, our journey has been built on the pillars of quality, integrity, and customer satisfaction. Over the years, we’ve had the privilege of transforming countless dreams into reality — from residential spaces to commercial landmarks.
+                          
+                          This milestone wouldn't have been possible without the unwavering support of our valued customers, partners, and dedicated team members. Your trust has been the foundation of our success, and we are truly grateful.
+                          
+                          As we look forward to the future, we remain committed to building with purpose, delivering excellence, and continuing to shape the skyline of Tamil Nadu — one project at a time.
+                          
+                          Thank you for being a part of our journey. Here's to many more years of building the future together! 💛
+                          
+                          </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>🗣️ What Our Clients Say</h2>
+            <div class="testimonials-container">
+                <div class="testimonials-carousel" id="testimonialCarousel">
+                    <div class="testimonial-slide">
+                        <img src="https://i.ibb.co/Hp7sVym9/Hp7sVym9.png" alt="Client Photo 1" onerror="this.onerror=null;this.src='https://placehold.co/80x80/00A6FB/FFFFFF?text=Client+1';">
+                        <p>"RK Builds Mart has been our go-to supplier for years. Their commitment to quality and prompt delivery is unmatched. They truly understand the demands of large-scale construction."</p>
+                        <h4>Thanesh</h4>
+                    </div>
+                    <div class="testimonial-slide">
+                        <img src="https://i.ibb.co/Hp7sVym9/Hp7sVym9.png" alt="Client Photo 2" onerror="this.onerror=null;this.src='https://placehold.co/80x80/00A6FB/FFFFFF?text=Client+2';">
+                        <p>"The range of products and the exceptional service make RK Builds Mart stand out. Their team is knowledgeable and always ready to assist."</p>
+                        <h4>Gokul</h4>
+                    </div>
+                    <div class="testimonial-slide">
+                        <img src="https="https://i.ibb.co/Hp7sVym9/Hp7sVym9.png" alt="Client Photo 3" onerror="this.onerror=null;this.src='https://placehold.co/80x80/00A6FB/FFFFFF?text=Client+3';">
+                        <p>"We rely on RK Builds Mart for critical materials. Their consistency in product quality and reliable supply chain significantly streamline our projects."</p>
+                        <h4>Venkat</h4>
+                    </div>
+                     <div class="testimonial-slide">
+                        <img src="https://i.ibb.co/Hp7sVym9/Hp7sVym9.png" alt="Client Photo Samuel Joseph" onerror="this.onerror=null;this.src='https://placehold.co/80x80/00A6FB/FFFFFF?text=Samuel';">
+                        <p>"As a developer, I need reliability. RK Builds Mart delivers every time, on time, with materials that exceed expectations. A true partner in construction."</p>
+                        <h4>Samuel Joseph</h4>
+                    </div>
+                    <div class="testimonial-slide">
+                        <img src="https://i.ibb.co/Hp7sVym9/Hp7sVym9.png" alt="Client Photo Vikram Yadav" onerror="this.onerror=null;this.src='https://placehold.co/80x80/00A6FB/FFFFFF?text=Vikram';">
+                        <p>"Their comprehensive range of products means I don't have to look anywhere else. The staff is always helpful, and the quality is consistently top-notch."</p>
+                        <h4>Vikram Yadav</h4>
+                    </div>
+                    <div class="testimonial-slide">
+                        <img src="https://i.ibb.co/Hp7sVym9/Hp7sVym9.png" alt="Client Photo Rebecca Thomas" onerror="this.onerror=null;this.src='https://placehold.co/80x80/00A6FB/FFFFFF?text=Rebecca';">
+                        <p>"From start to finish, the experience with RK Builds Mart has been seamless. Their expertise and dedication make them the clear choice for any building project."</p>
+                        <h4>Rebecca Thomas</h4>
+                    </div>
+                </div>
+                <div class="carousel-nav-dots" id="carouselDots">
+                    <span class="dot active" data-slide="0"></span>
+                    <span class="dot" data-slide="1"></span>
+                    <span class="dot" data-slide="2"></span>
+                    <span class="dot" data-slide="3"></span>
+                    <span class="dot" data-slide="4"></span>
+                    <span class="dot" data-slide="5"></span>
+                </div>
+            </div>
+        </section>
+
+        <section id="careers">
+            <h2>💼 Career Opportunities</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem;">
+                Join the RK Builds Mart family and contribute to building a stronger future. We are always looking for passionate and talented individuals to join our growing team. Explore our current openings and embark on a rewarding career path with us.
+            </p>
+            <div class="career-job">
+                <h3>Senior Sales Executive - Chennai</h3>
+                <p><strong>Department:</strong> Sales & Marketing | <strong>Experience:</strong> 5+ years</p>
+                <p>We are seeking a highly motivated and experienced Senior Sales Executive to drive sales and foster client relationships in the Chennai region.</p>
+                <ul>
+                    <li>Develop and implement sales strategies to achieve targets.</li>
+                    <li>Build and maintain strong relationships with contractors, builders, and retailers.</li>
+                    <li>Conduct market research to identify new business opportunities.</li>
+                    <li>Provide excellent customer service and after-sales support.</li>
+                </ul>
+                <a href="mailto:rkpipes@gmail.com?subject=Inquiry for Senior Sales Executive - Chennai" class="apply-btn">Contact Us</a>
+            </div>
+
+            <div class="career-job">
+                <h3>Logistics & Warehouse Manager</h3>
+                <p><strong>Department:</strong> Operations | <strong>Experience:</strong> 7+ years</p>
+                <p>Manage and optimize our supply chain, ensuring efficient warehousing and timely delivery of materials across Tamil Nadu.</p>
+                <ul>
+                    <li>Oversee daily warehouse operations (receiving, dispatch, inventory).</li>
+                    <li>Optimize logistics routes and manage transportation.</li>
+                    <li>Implement best practices for safety and efficiency.</li>
+                    <li>Lead and mentor the logistics team.</li>
+                </ul>
+                <a href="mailto:rkpipes@gmail.com?subject=Inquiry for Logistics & Warehouse Manager" class="apply-btn">Contact Us</a>
+            </div>
+
+            <div class="career-job">
+                <h3>Junior Accountant</h3>
+                <p><strong>Department:</strong> Finance | <strong>Experience:</strong> 1-3 years</p>
+                <p>An entry-level opportunity for a passionate individual to grow within our finance department.</p>
+                <ul>
+                    <li>Assist with daily accounting operations, including accounts payable/receivable.</li>
+                    <li>Prepare financial reports and assist with audits.</li>
+                    <li>Reconcile bank statements and maintain general ledger.</li>
+                    <li>Ensure compliance with financial regulations.</li>
+                </ul>
+                <a href="mailto:rkpipes@gmail.com?subject=Inquiry for Junior Accountant" class="apply-btn">Contact Us</a>
+            </div>
+        </section>
+
+        <section>
+            <h2>👷‍♂️ Our Valued Clients</h2>
+            <div class="clients">
+                <ul>
+                    <li>🏢 Casa Grand</li>
+                    <li>🏨 Hotel Green Park</li>
+                    <li>🏗️ True Value Homes</li>
+                    <li>🏛️ Design Republic</li>
+                    <li>🏢 PNC Construction</li>
+                    <li>🏗️ Pace Builders</li>
+                    <li>🛠️ Shobana Sanitary</li>
+                    <li>🏠 Sri Adithya Holding</li>
+                    <li>🏚️ Red Bricks</li>
+                    <li>🏘️ Usha Homes</li>
+                    <li>🏗️ Raj Khan Builders</li>
+                    <li>🏢 Reliable Homes</li>
+                    <li>🏗️ Maxis Construction</li>
+                    <li>🏠 Rahul Associates</li>
+                    <li>🏘️ Arthi Builders</li>
+                    <li>🏢 Gem Construction</li>
+                    <li>🏠 Rayden Designs</li>
+                    <li>🏗️ GK Builders</li>
+                    <li>🏘️ RD Associates</li>
+                    <li>🏢 Amman Real Estates</li>
+                    <li>🏠 Vharagar Properties</li>
+                    <li>🏘️ Srinivasa Housing</li>
+                    <li>🏗️ Madras Engg. Consultants</li>
+                    <li>🏘️ HVS Builders</li>
+                    <li>🛒 Other Retail Stores</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <h2>📞 Get in Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Contact Details</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> <strong>Head Office:</strong> RK Tower, 10/1008, E.B. Office Road, Mogappair East, Chennai - 37</p>
+                    <p><i class="fas fa-warehouse"></i> <strong>Depot:</strong> RK Towers II, No.9, Apana Nagar, Ayyapakkam, Chennai - 77</p>
+                    <p><i class="fas fa-phone-alt"></i> <strong>Phone:</strong> +91 89395 95893</p>
+                    <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <a href="mailto:rkpipes@gmail.com">rkpipes@gmail.com</a></p>
+                    <p style="margin-top: 25px;"><strong>Follow Us:</strong></p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/RKBuildsMartOfficial" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://in.linkedin.com/company/rk-builds-mart-official" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/rkbuildsmart_official" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com/RKBuildsMart" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form-container">
+                    <h3>Send Us a Message</h3>
+                    <p style="margin-bottom: 20px;">For detailed inquiries, project quotes, or career applications, please use our dedicated form:</p>
+                    <a href="https://docs.google.com/forms/d/18e3dy5s7-OFWZYmOZAFKY7g6X-Hu5f1BncdYEAUlVaY/edit" target="_blank" class="btn" style="width: 100%; text-align: center; display: block;">
+                        Open Inquiry Form
+                    </a>
+                    <div id="formMessage" class="form-message"></div>
+                </div>
+            </div>
+            <p style="margin-top: 40px; text-align: center;">📍 Find us on the map:</p>
+            <div class="map-container">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.305146963749!2d80.18382395047472!3d13.0798371424187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5263fe35047f17%3A0x42916d40d663bd1f!2sRK%20PIPES%20%26%20FITINGS!5e0!3m2!1sen!2sin!4v1747960788083!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>📍 Visit our Head Office: RK Tower, 10/1008, E.B. Office Road, Mogappair East, Chennai - 37</p>
+        <p>© 2025 RK Builds Mart. All rights reserved.</p>
+        <div class="footer-social-links">
+            <a href="https://www.facebook.com/RKBuildsMartOfficial" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://in.linkedin.com/company/rk-builds-mart-official" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/rkbuildsmart_official" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         </div>
-        <div class="carousel-nav-dots" id="carouselDots">
-          <span class="dot active" data-slide="0"></span>
-          <span class="dot" data-slide="1"></span>
-          <span class="dot" data-slide="2"></span>
-        </div>
-      </div>
-    </section>
+        <div class="watermark">🌐 Developed with passion by <a href="https://in.linkedin.com/in/rajith-raaj-09253933b" target="_blank">Rajith Raaj</a></div>
+    </footer>
 
-    <section id="careers">
-      <h2>💼 Career Opportunities</h2>
-      <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem;">
-        Join the RK Builds Mart family and contribute to building a stronger future. We are always looking for passionate and talented individuals to join our growing team. Explore our current openings and embark on a rewarding career path with us.
-      </p>
-      <div class="career-job">
-        <h3>Senior Sales Executive - Chennai</h3>
-        <p><strong>Department:</strong> Sales & Marketing | <strong>Experience:</strong> 5+ years</p>
-        <p>We are seeking a highly motivated and experienced Senior Sales Executive to drive sales and foster client relationships in the Chennai region.</p>
-        <ul>
-          <li>Develop and implement sales strategies to achieve targets.</li>
-          <li>Build and maintain strong relationships with contractors, builders, and retailers.</li>
-          <li>Conduct market research to identify new business opportunities.</li>
-          <li>Provide excellent customer service and after-sales support.</li>
-        </ul>
-        <a href="mailto:careers@rkbuildsmart.com?subject=Application for Senior Sales Executive - Chennai" class="apply-btn">Apply Now</a>
-      </div>
+    <a class="whatsapp-float" href="https://wa.link/e2hj6m" target="_blank" title="Chat with us on WhatsApp">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
+    </a>
 
-      <div class="career-job">
-        <h3>Logistics & Warehouse Manager</h3>
-        <p><strong>Department:</strong> Operations | <strong>Experience:</strong> 7+ years</p>
-        <p>Manage and optimize our supply chain, ensuring efficient warehousing and timely delivery of materials across Tamil Nadu.</p>
-        <ul>
-          <li>Oversee daily warehouse operations (receiving, dispatch, inventory).</li>
-          <li>Optimize logistics routes and manage transportation.</li>
-          <li>Implement best practices for safety and efficiency.</li>
-          <li>Lead and mentor the logistics team.</li>
-        </ul>
-        <a href="mailto:careers@rkbuildsmart.com?subject=Application for Logistics & Warehouse Manager" class="apply-btn">Apply Now</a>
-      </div>
+    <button onclick="topFunction()" id="scrollToTopBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
 
-      <div class="career-job">
-        <h3>Junior Accountant</h3>
-        <p><strong>Department:</strong> Finance | <strong>Experience:</b> 1-3 years</p>
-        <p>An entry-level opportunity for a passionate individual to grow within our finance department.</p>
-        <ul>
-          <li>Assist with daily accounting operations, including accounts payable/receivable.</li>
-          <li>Prepare financial reports and assist with audits.</li>
-          <li>Reconcile bank statements and maintain general ledger.</li>
-          <li>Ensure compliance with financial regulations.</li>
-        </ul>
-        <a href="mailto:careers@rkbuildsmart.com?subject=Application for Junior Accountant" class="apply-btn">Apply Now</a>
-      </div>
-    </section>
-
-    <section>
-      <h2>👷‍♂️ Our Valued Clients</h2>
-      <div class="clients">
-        <ul>
-          <li>🏢 Casa Grand</li>
-          <li>🏨 Hotel Green Park</li>
-          <li>🏗️ True Value Homes</li>
-          <li>🏛️ Design Republic</li>
-          <li>🏢 PNC Construction</li>
-          <li>🏗️ Pace Builders</li>
-          <li>🛠️ Shobana Sanitary</li>
-          <li>🏠 Sri Adithya Holding</li>
-          <li>🏚️ Red Bricks</li>
-          <li>🏘️ Usha Homes</li>
-          <li>🏗️ Raj Khan Builders</li>
-          <li>🏢 Reliable Homes</li>
-          <li>🏗️ Maxis Construction</li>
-          <li>🏠 Rahul Associates</li>
-          <li>🏘️ Arthi Builders</li>
-          <li>🏢 Gem Construction</li>
-          <li>🏠 Rayden Designs</li>
-          <li>🏗️ GK Builders</li>
-          <li>🏘️ RD Associates</li>
-          <li>🏢 Amman Real Estates</li>
-          <li>🏠 Vharagar Properties</li>
-          <li>🏘️ Srinivasa Housing</li>
-          <li>🏗️ Madras Engg. Consultants</li>
-          <li>🏘️ HVS Builders</li>
-          <li>🛒 Other Retail Stores</li>
-        </ul>
-      </div>
-    </section>
-
-    <section>
-      <h2>🏷️ Brands we Deal In</h2>
-      <ul class="brand-grid">
-        <li>Coromandel</li><li>UltraTech</li><li>Ramco</li><li>Maha HD+</li>
-        <li>Zuari</li><li>Birla Sakthi</li><li>Coromandel KING</li><li>UltraTech CEMENT</li>
-        <li>RAMCO</li><li>SUPERIOR CEMENT</li><li>MAHA HD CEMENT</li><li>İSTEEL XLS</li>
-        <li>TATA TISCON</li><li>SuryaDev</li><li>ARS</li><li>Arun Plus TMT</li>
-        <li>Finolex INDUSTRIES</li><li>Ashirvad PIPES</li><li>TRUBORE</li><li>Supreme pipes</li>
-        <li>KAG tiles</li><li>Parryware</li><li>Jaquar</li><li>PRINCE</li>
-        <li>CROWN</li><li>Legrand</li><li>Greatwhite electricals</li><li>RR Kabel</li>
-        <li>Crompton</li><li>Asian Paints</li><li>Nippon Paint</li><li>Birla White</li>
-      </ul>
-    </section>
-
-    <section id="contact" class="contact-section">
-      <h2>📞 Get in Touch</h2>
-      <div class="contact-content">
-        <div class="contact-info">
-          <h3>Contact Details</h3>
-          <p><i class="fas fa-map-marker-alt"></i> <strong>Head Office:</strong> RK Tower, 10/1008, E.B. Office Road, Mogappair East, Chennai - 37</p>
-          <p><i class="fas fa-warehouse"></i> <strong>Depot:</strong> RK Towers II, No.9, Apana Nagar, Ayyapakkam, Chennai - 77</p>
-          <p><i class="fas fa-phone-alt"></i> <strong>Phone:</strong> +91 89395 95893</p>
-          <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <a href="mailto:info@rkbuildsmart.com">info@rkbuildsmart.com</a></p>
-          <p style="margin-top: 25px;"><strong>Follow Us:</strong></p>
-          <div class="social-links">
-            <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://in.linkedin.com/in/rohith-kani-294002342" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://twitter.com/" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          </div>
-        </div>
-        <div class="contact-form-container">
-          <h3>Send Us a Message</h3>
-          <form id="contactForm" class="contact-form">
-            <label for="name">Your Name:</label>
-            <input type="text" id="name" name="name" required placeholder="Enter your name">
-
-            <label for="email">Your Email:</label>
-            <input type="email" id="email" name="email" required placeholder="Enter your email address">
-
-            <label for="phone">Phone Number (Optional):</label>
-            <input type="tel" id="phone" name="phone" placeholder="e.g., +91 12345 67890">
-
-            <label for="subject">Subject:</label>
-            <input type="text" id="subject" name="subject" required placeholder="Subject of your inquiry">
-
-            <label for="message">Your Message:</label>
-            <textarea id="message" name="message" rows="5" required placeholder="Write your message here..."></textarea>
-
-            <button type="submit">Send Message</button>
-            <div id="formMessage" class="form-message"></div>
-          </form>
-        </div>
-      </div>
-      <p style="margin-top: 40px; text-align: center;">📍 Find us on the map:</p>
-      <div style="width: 100%; height: 400px; border-radius: 15px; overflow: hidden; margin-top: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.305146963749!2d80.18382395047472!3d13.0798371424187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5263fe35047f17%3A0x42916d40d663bd1f!2sRK%20PIPES%20%26%20FITINGS!5e0!3m2!1sen!2sin!4v1747960788083!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>📍 Visit our Head Office: RK Tower, 10/1008, E.B. Office Road, Mogappair East, Chennai - 37</p>
-    <p>© 2025 RK Builds Mart. All rights reserved.</p>
-    <div class="footer-social-links">
-      <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-      <a href="https://in.linkedin.com/in/rohith-kani-294002342" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-      <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-    </div>
-    <div class="watermark">🌐 Developed with passion by <a href="https://in.linkedin.com/in/rajith-raaj-09253933b" target="_blank">Rajith Raaj</a></div>
-  </footer>
-
-  <a class="whatsapp-float" href="https://wa.link/86xzff" target="_blank" title="Chat with us on WhatsApp">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
-  </a>
-
-  <button onclick="topFunction()" id="scrollToTopBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
-
-  <script>
-    // --- Smooth Scrolling for Navigation ---
-    document.querySelectorAll('nav a').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href').substring(1);
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - document.querySelector('header').offsetHeight, // Offset by header height
-            behavior: 'smooth'
-          });
-          // Close mobile menu after clicking a link
-          const mainNav = document.getElementById('mainNav');
-          const menuToggle = document.getElementById('menuToggle');
-          if (mainNav.classList.contains('active')) {
-            mainNav.classList.remove('active');
-            menuToggle.classList.remove('open');
-          }
-        }
-      });
-    });
-
-    // --- Mobile Menu Toggle ---
-    const menuToggle = document.getElementById('menuToggle');
-    const mainNav = document.getElementById('mainNav');
-    menuToggle.addEventListener('click', () => {
-      mainNav.classList.toggle('active');
-      menuToggle.classList.toggle('open');
-    });
-
-    // --- Section Visibility (Scroll Animation) ---
-    const sections = document.querySelectorAll('section');
-    const options = {
-      root: null,
-      threshold: 0.1, // Trigger when 10% of the section is visible
-      rootMargin: "0px"
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target); // Stop observing once it's visible
-        }
-      });
-    }, options);
-
-    sections.forEach(section => {
-      observer.observe(section);
-    });
-
-    // --- Products Tabbed Interface ---
-    document.addEventListener('DOMContentLoaded', () => {
-      const tabButtons = document.querySelectorAll('.tab-button');
-      const tabContents = document.querySelectorAll('.tab-content');
-
-      tabButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          // Remove active class from all buttons and content
-          tabButtons.forEach(btn => btn.classList.remove('active'));
-          tabContents.forEach(content => content.classList.remove('active'));
-
-          // Add active class to clicked button and corresponding content
-          button.classList.add('active');
-          document.getElementById(button.dataset.tab).classList.add('active');
+    <script>
+        // --- Smooth Scrolling for Navigation ---
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - document.querySelector('header').offsetHeight, // Offset by header height
+                        behavior: 'smooth'
+                    });
+                    // Close mobile menu after clicking a link
+                    const mainNav = document.getElementById('mainNav');
+                    const menuToggle = document.getElementById('menuToggle');
+                    if (mainNav.classList.contains('active')) {
+                        mainNav.classList.remove('active');
+                        menuToggle.classList.remove('open');
+                    }
+                }
+            });
         });
-      });
-    });
 
-    // --- Testimonials Carousel ---
-    document.addEventListener('DOMContentLoaded', function() {
-      const carousel = document.getElementById('testimonialCarousel');
-      const dotsContainer = document.getElementById('carouselDots');
-      const slides = document.querySelectorAll('.testimonial-slide');
-      let currentIndex = 0;
-      let intervalId;
-
-      function updateCarousel() {
-        const offset = -currentIndex * 100;
-        carousel.style.transform = `translateX(${offset}%)`;
-        updateDots();
-      }
-
-      function updateDots() {
-        dotsContainer.querySelectorAll('.dot').forEach((dot, index) => {
-          if (index === currentIndex) {
-            dot.classList.add('active');
-          } else {
-            dot.classList.remove('active');
-          }
+        // --- Mobile Menu Toggle ---
+        const menuToggle = document.getElementById('menuToggle');
+        const mainNav = document.getElementById('mainNav');
+        menuToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            menuToggle.classList.toggle('open');
         });
-      }
 
-      function goToSlide(index) {
-        currentIndex = index;
-        if (currentIndex >= slides.length) {
-          currentIndex = 0;
-        } else if (currentIndex < 0) {
-          currentIndex = slides.length - 1;
+        // --- Section Visibility (Scroll Animation) ---
+        const sections = document.querySelectorAll('section');
+        const options = {
+            root: null,
+            threshold: 0.1, // Trigger when 10% of the section is visible
+            rootMargin: "0px"
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // observer.unobserve(entry.target); // Keep observing if elements can become invisible again
+                } else {
+                    // Optional: remove is-visible when not intersecting, for re-animation on scroll
+                    // entry.target.classList.remove('is-visible');
+                }
+            });
+        }, options);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // --- Testimonials Carousel ---
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.getElementById('testimonialCarousel');
+            const dotsContainer = document.getElementById('carouselDots');
+            const slides = document.querySelectorAll('.testimonial-slide');
+            let currentIndex = 0;
+            let intervalId;
+
+            function updateCarousel() {
+                const offset = -currentIndex * 100;
+                carousel.style.transform = `translateX(${offset}%)`;
+                updateDots();
+            }
+
+            function updateDots() {
+                dotsContainer.querySelectorAll('.dot').forEach((dot, index) => {
+                    if (index === currentIndex) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+
+            function goToSlide(index) {
+                currentIndex = index;
+                if (currentIndex >= slides.length) {
+                    currentIndex = 0;
+                } else if (currentIndex < 0) {
+                    currentIndex = slides.length - 1;
+                }
+                updateCarousel();
+                resetInterval();
+            }
+
+            function nextSlide() {
+                goToSlide(currentIndex + 1);
+            }
+
+            function prevSlide() {
+                goToSlide(currentIndex - 1);
+            }
+
+            function resetInterval() {
+                clearInterval(intervalId);
+                intervalId = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+            }
+
+            // Create dots
+            // Ensure dots are not duplicated if script runs multiple times
+            if (dotsContainer.children.length === 0) {
+                slides.forEach((_, index) => {
+                    const dot = document.createElement('span');
+                    dot.classList.add('dot');
+                    dot.dataset.slide = index;
+                    dot.addEventListener('click', () => goToSlide(index));
+                    dotsContainer.appendChild(dot);
+                });
+            }
+
+            updateCarousel(); // Initialize position
+            resetInterval(); // Start auto-play
+
+            // Optional: Add arrow navigation (requires adding arrows to HTML)
+            // document.getElementById('prevArrow').addEventListener('click', prevSlide);
+            // document.getElementById('nextArrow').addEventListener('click', nextSlide);
+        });
+
+
+        // --- Scroll to Top Button Functionality ---
+        let mybutton = document.getElementById("scrollToTopBtn");
+
+        // When the user scrolls down 200px from the top of the document, show the button
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                mybutton.style.display = "block";
+            }
+            else {
+                mybutton.style.display = "none";
+            }
         }
-        updateCarousel();
-        resetInterval();
-      }
 
-      function nextSlide() {
-        goToSlide(currentIndex + 1);
-      }
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
 
-      function prevSlide() {
-        goToSlide(currentIndex - 1);
-      }
-
-      function resetInterval() {
-        clearInterval(intervalId);
-        intervalId = setInterval(nextSlide, 5000); // Change slide every 5 seconds
-      }
-
-      // Create dots
-      slides.forEach((_, index) => {
-        const dot = document.createElement('span');
-        dot.classList.add('dot');
-        dot.dataset.slide = index;
-        dot.addEventListener('click', () => goToSlide(index));
-        dotsContainer.appendChild(dot);
-      });
-
-      updateCarousel(); // Initialize position
-      resetInterval(); // Start auto-play
-
-      // Optional: Add arrow navigation (requires adding arrows to HTML)
-      // document.getElementById('prevArrow').addEventListener('click', prevSlide);
-      // document.getElementById('nextArrow').addEventListener('click', nextSlide);
-    });
-
-    // --- Contact Form Validation & Submission (Frontend Only) ---
-    document.getElementById('contactForm').addEventListener('submit', function(event) {
-      event.preventDefault(); // Prevent default form submission
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const subject = document.getElementById('subject').value.trim();
-      const message = document.getElementById('message').value.trim();
-      const formMessage = document.getElementById('formMessage');
-
-      formMessage.style.display = 'none'; // Hide previous messages
-
-      if (name === '' || email === '' || subject === '' || message === '') {
-        formMessage.textContent = 'Please fill in all required fields.';
-        formMessage.classList.remove('success');
-        formMessage.classList.add('error');
-        formMessage.style.display = 'block';
-        return;
-      }
-
-      if (!/\S+@\S+\.\S+/.test(email)) {
-        formMessage.textContent = 'Please enter a valid email address.';
-        formMessage.classList.remove('success');
-        formMessage.classList.add('error');
-        formMessage.style.display = 'block';
-        return;
-      }
-
-      // Simulate form submission (in a real scenario, this would be an AJAX call)
-      setTimeout(() => {
-        formMessage.textContent = 'Thank you for your message! We will get back to you soon.';
-        formMessage.classList.remove('error');
-        formMessage.classList.add('success');
-        formMessage.style.display = 'block';
-        this.reset(); // Clear the form
-      }, 1000);
-    });
-
-    // --- Scroll to Top Button Functionality ---
-    let mybutton = document.getElementById("scrollToTopBtn");
-
-    // When the user scrolls down 200px from the top of the document, show the button
-    window.onscroll = function() {scrollFunction()};
-
-    function scrollFunction() {
-      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-        mybutton.style.display = "block";
-      } else {
-        mybutton.style.display = "none";
-      }
-    }
-
-    // When the user clicks on the button, scroll to the top of the document
-    function topFunction() {
-      document.body.scrollTop = 0; // For Safari
-      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    }
-
-  </script>
-
+    </script>
 </body>
 </html>
